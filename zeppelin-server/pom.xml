@@ -293,7 +293,7 @@
     </dependency>
 
     <!--test libraries-->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
       <classifier>tests</classifier>
@@ -312,7 +312,7 @@
           <artifactId>guava</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
+    </dependency> -->
 
     <dependency>
       <groupId>junit</groupId>

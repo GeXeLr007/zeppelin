@@ -84,11 +84,11 @@
       <scope>provided</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.zeppelin</groupId>
-      <artifactId>spark1-shims</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.zeppelin</groupId>-->
+<!--      <artifactId>spark1-shims</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.apache.zeppelin</groupId>
@@ -96,17 +96,17 @@
       <version>${project.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.zeppelin</groupId>
-      <artifactId>spark3-shims</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.zeppelin</groupId>-->
+<!--      <artifactId>spark3-shims</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--    </dependency>-->
 
-    <dependency>
-      <groupId>org.apache.zeppelin</groupId>
-      <artifactId>zeppelin-kotlin</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.zeppelin</groupId>-->
+<!--      <artifactId>zeppelin-kotlin</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.apache.zeppelin</groupId>
@@ -132,7 +132,7 @@
       </exclusions>
     </dependency>
 
-    <dependency>
+    <!-- <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>zeppelin-python</artifactId>
       <version>${project.version}</version>
@@ -172,19 +172,19 @@
           <artifactId>py4j</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
+    </dependency> -->
 
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>r</artifactId>
-      <version>${project.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>${project.groupId}</groupId>-->
+<!--      <artifactId>r</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>*</groupId>-->
+<!--          <artifactId>*</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.apache.spark</groupId>

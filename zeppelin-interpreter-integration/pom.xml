@@ -101,7 +101,7 @@
     </dependency>
 
     <!--test libraries-->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.zeppelin</groupId>
       <artifactId>zeppelin-zengine</artifactId>
       <version>${project.version}</version>
@@ -142,7 +142,7 @@
       <artifactId>hadoop-common</artifactId>
       <classifier>tests</classifier>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
 
     <dependency>
       <groupId>junit</groupId>
