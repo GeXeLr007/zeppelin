@@ -38,6 +38,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -48,11 +49,13 @@ import java.util.Properties;
 public class IRInterpreter extends JupyterKernelInterpreter {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(IRInterpreter.class);
+  private static RZeppelinContext z;
 
   // It is used to store shiny related code (ui.R & server.R)
   // only one shiny app can be hosted in one R session.
   private File shinyAppFolder;
   private SparkRBackend sparkRBackend;
+  private String shinyPortRange;
 
   public IRInterpreter(Properties properties) {
     super("ir", properties);
@@ -103,6 +106,13 @@ public class IRInterpreter extends JupyterKernelInterpreter {
       }
     }
 
+    synchronized (IRInterpreter.class) {
+      if (this.z == null) {
+        z = new RZeppelinContext(getInterpreterGroup().getInterpreterHookRegistry(),
+                Integer.parseInt(getProperty("zeppelin.R.maxResult", "1000")));
+      }
+    }
+
     try {
       initIRKernel();
     } catch (IOException e) {
@@ -113,6 +123,7 @@ public class IRInterpreter extends JupyterKernelInterpreter {
     try {
       this.shinyAppFolder = Files.createTempDirectory("zeppelin-shiny").toFile();
       this.shinyAppFolder.deleteOnExit();
+      this.shinyPortRange = properties.getProperty("zeppelin.R.shiny.portRange", ":");
     } catch (IOException e) {
       throw new InterpreterException(e);
     }
@@ -140,6 +151,20 @@ public class IRInterpreter extends JupyterKernelInterpreter {
     if (response.getStatus() != ExecuteStatus.SUCCESS) {
       throw new IOException("Fail to setup JVMGateway\n" + response.getOutput());
     }
+  }
+
+  @Override
+  protected Map<String, String> setupKernelEnv() throws IOException {
+    Map<String, String> envs = super.setupKernelEnv();
+    String pathEnv = envs.getOrDefault("PATH", "");
+    if (condaEnv != null) {
+      // add ${PWD}/${condaEnv}/bin to PATH, otherwise JupyterKernelInterpreter will fail to
+      // find R to launch IRKernel
+      pathEnv = new File(".").getAbsolutePath() + File.separator + condaEnv +
+              File.separator + "bin" + File.pathSeparator + pathEnv;
+      envs.put("PATH", pathEnv);
+    }
+    return envs;
   }
 
   @Override
@@ -185,14 +210,18 @@ public class IRInterpreter extends JupyterKernelInterpreter {
     try {
       StringBuilder builder = new StringBuilder("library(shiny)\n");
       String host = RemoteInterpreterUtils.findAvailableHostAddress();
-      int port = RemoteInterpreterUtils.findRandomAvailablePortOnAllLocalInterfaces();
+      int port = RemoteInterpreterUtils.findAvailablePort(shinyPortRange);
       builder.append("runApp(appDir='" + shinyAppFolder.getAbsolutePath() + "', " +
               "port=" + port + ", host='" + host + "', launch.browser=FALSE)");
       // shiny app will launch and block there until user cancel the paragraph.
-      LOGGER.info("Run shiny app code: {}", builder);
+      LOGGER.info("Run shiny app code: {}", builder.toString());
       return internalInterpret(builder.toString(), context);
     } finally {
       getKernelProcessLauncher().setRedirectedContext(null);
     }
+  }
+
+  public static RZeppelinContext getRZeppelinContext() {
+    return z;
   }
 }
