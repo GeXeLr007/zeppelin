@@ -74,8 +74,8 @@
     <module>pig</module>
     <module>jdbc</module>
     <module>file</module>
-    <!-- <module>flink</module> -->
-    <!-- <module>flink-cmd</module> -->
+    <module>flink</module>
+    <module>flink-cmd</module>
     <module>ignite</module>
     <module>influxdb</module>
     <module>kylin</module>
