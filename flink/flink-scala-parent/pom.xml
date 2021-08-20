@@ -115,27 +115,27 @@
       </exclusions>
     </dependency>
 
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>zeppelin-python</artifactId>
-      <version>${project.version}</version>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>io.atomix</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>io.grpc</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>${project.groupId}</groupId>-->
+<!--      <artifactId>zeppelin-python</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--      <classifier>tests</classifier>-->
+<!--      <scope>test</scope>-->
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>io.atomix</groupId>-->
+<!--          <artifactId>*</artifactId>-->
+<!--        </exclusion>-->
+<!--        <exclusion>-->
+<!--          <groupId>com.google.guava</groupId>-->
+<!--          <artifactId>guava</artifactId>-->
+<!--        </exclusion>-->
+<!--        <exclusion>-->
+<!--          <groupId>io.grpc</groupId>-->
+<!--          <artifactId>*</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.apache.flink</groupId>
@@ -239,13 +239,13 @@
       <scope>provided</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-hive_${flink.scala.binary.version}</artifactId>
-      <version>${flink.version}</version>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.flink</groupId>-->
+<!--      <artifactId>flink-connector-hive_${flink.scala.binary.version}</artifactId>-->
+<!--      <version>${flink.version}</version>-->
+<!--      <classifier>tests</classifier>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
 
     <!-- hadoop compatibility dependency -->
     <dependency>
@@ -317,23 +317,23 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-hive_${flink.scala.binary.version}</artifactId>
-      <version>${flink.version}</version>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.hive</groupId>
-          <artifactId>hive-exec</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.hive</groupId>
-          <artifactId>hive-metastore</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.flink</groupId>-->
+<!--      <artifactId>flink-connector-hive_${flink.scala.binary.version}</artifactId>-->
+<!--      <version>${flink.version}</version>-->
+<!--      <classifier>tests</classifier>-->
+<!--      <scope>test</scope>-->
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.apache.hive</groupId>-->
+<!--          <artifactId>hive-exec</artifactId>-->
+<!--        </exclusion>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.apache.hive</groupId>-->
+<!--          <artifactId>hive-metastore</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.apache.flink</groupId>
